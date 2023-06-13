@@ -9,9 +9,10 @@ export default {
             primaryKey: true,
             type: DataTypes.INTEGER
           },
-          team_name: {
+          teamName: {
             type: DataTypes.STRING,
             allowNull: false,
+            field: 'team_name',
           }
     });
   },
