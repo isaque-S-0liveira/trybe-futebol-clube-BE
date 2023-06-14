@@ -38,10 +38,10 @@ SequelizeTeam.init({
     * Associations 1:N devem ficar em uma das instâncias de modelo
     * */
 
-SequelizeMatche.belongsTo(SequelizeTeam, { foreignKey: 'homeTeamId', as: 'teams' });
-SequelizeMatche.belongsTo(SequelizeTeam, { foreignKey: 'awayTeamId', as: 'matches' });
+SequelizeMatche.belongsTo(SequelizeTeam, { foreignKey: 'homeTeamId', as: 'homeTeam' });
+SequelizeMatche.belongsTo(SequelizeTeam, { foreignKey: 'awayTeamId', as: 'awayTeam' });
 
-SequelizeTeam.hasMany(SequelizeMatche, { foreignKey: 'homeTeamId', as: 'matches' });
-SequelizeTeam.hasMany(SequelizeMatche, { foreignKey: ' awayTeamId', as: 'matches' });
+SequelizeTeam.hasMany(SequelizeMatche, { foreignKey: 'homeTeamId', as: 'homeMatches' });
+SequelizeTeam.hasMany(SequelizeMatche, { foreignKey: 'awayTeamId', as: 'awayMatches' });
 
 export default SequelizeTeam;
