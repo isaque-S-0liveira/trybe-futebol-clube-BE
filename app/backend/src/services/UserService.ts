@@ -2,13 +2,12 @@ import UserModel from '../models/UserModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import { IUserModel } from '../Interfaces/IUserModel';
 import { IEncrypter } from '../Interfaces/IEncrypter';
-import { TokenGenerator } from '../Interfaces/TokenGenerator';
+import TokenGeneratorJwt from '../auth/TokenGeneratorJwt';
 
 export default class UserService {
   constructor(
     private userModel: IUserModel = new UserModel(),
     private encrypter: IEncrypter,
-    private tokenGenerator: TokenGenerator,
   ) {}
 
   public async login(email: string, password: string): Promise<ServiceResponse<{ token: string }>> {
@@ -24,7 +23,7 @@ export default class UserService {
       return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
     }
 
-    const token = this.tokenGenerator.generate(user);
+    const token = TokenGeneratorJwt.generate(user);
 
     return {
       status: 'SUCCESSFUL',
