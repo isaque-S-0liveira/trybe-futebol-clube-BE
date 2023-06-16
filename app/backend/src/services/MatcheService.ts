@@ -18,11 +18,24 @@ export default class MatcheService {
 
   public async finishedMatche(id: number):
   Promise<ServiceResponse<ServiceMessage>> {
-    const matcheUpdated = await this.matcheModel.update(id);
+    const matcheUpdated = await this.matcheModel.endMatch(id);
     if (!matcheUpdated) {
       return { status: 'NOT_FOUND', data: { message: 'Matche id not found' },
       };
     }
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
+
+  public async updateMatcheInProgress(id: number, matche: IMatche):
+  Promise<ServiceResponse<IMatche>> {
+    const matcheFound = await this.matcheModel.findById(id);
+    if (!matcheFound) return { status: 'NOT_FOUND', data: { message: 'Matche id not found' } };
+
+    if (matcheFound.inProgress === false) {
+      return { status: 'CONFLICT',
+        data: { message: 'the matche is over' } };
+    }
+    await this.matcheModel.update(id, matche);
+    return { status: 'SUCCESSFUL', data: matcheFound };
   }
 }

@@ -34,4 +34,16 @@ export default class MatchesController {
 
     return res.status(200).json(serviceResponse.data);
   }
+
+  public async updateMatcheInProgress(req: Request, res: Response): Promise<Response> {
+    const id = Number(req.params.id);
+    const matche = req.body;
+    const serviceResponse = await this.matcheService.updateMatcheInProgress(id, matche);
+
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+      return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+
+    return res.status(200).json(serviceResponse.data);
+  }
 }

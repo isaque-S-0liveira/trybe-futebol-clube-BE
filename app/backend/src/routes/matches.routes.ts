@@ -14,4 +14,10 @@ matche.patch(
   (req: Request, res: Response) =>
     matchesController.finishedMatche(req, res),
 );
+matche.patch(
+  '/:id',
+  UserValidate.validateJWT,
+  (req: Request, res: Response) =>
+    matchesController.updateMatcheInProgress(req, res),
+);
 export default matche;
