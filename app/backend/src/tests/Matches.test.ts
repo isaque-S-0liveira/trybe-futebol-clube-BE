@@ -25,14 +25,24 @@ describe('Matches Test', () => {
     expect(status).to.equal(200);
     expect(body).to.deep.equal(matchesResult);
   });
-  it('deve ser possivel filtrar somente partidas em andamento ou partidas finalizadas', async () => {
+  it('deve ser possivel filtrar somente partidas em andamento', async () => {
 
-    // sinon.stub(SequelizeTeam, 'findByPk').resolves(teamsMock.teams[0] as any);
+    sinon.stub(SequelizeMatche, 'findAll').resolves(matchesResult[1] as any);
 
-    // const res = await chai.request(app).get('/teams/1');
+    const { status, body } = await chai.request(app).get('/matches').query({ inProgress: true });;
 
-    // expect(res.status).to.equal(200);
-    // expect(res.body).to.deep.equal(teamsMock.teams[0]);
+    expect(status).to.equal(200);
+    expect(body).to.deep.equal(matchesResult[1]);
+});
+
+it('deve ser possivel filtrar somente partidas finalizadas', async () => {
+
+  sinon.stub(SequelizeMatche, 'findAll').resolves(matchesResult[0] as any);
+
+  const { status, body } = await chai.request(app).get('/matches').query({ inProgress: false });;
+
+  expect(status).to.equal(200);
+  expect(body).to.deep.equal(matchesResult[0]);
 });
 });
   it('deve ser possivel finalizar uma partida no DB', async () => {
