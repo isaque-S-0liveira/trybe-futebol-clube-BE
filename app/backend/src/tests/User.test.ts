@@ -104,7 +104,7 @@ describe('Users Test', () => {
 
   
   it('deve retornar uma messagem de erro caso o token não exista', async () => {
-    sinon.stub(TokenGeneratorJwt, 'verify').resolves(null);
+    sinon.stub(jwt, 'verify').returns(null as any);
 
     const res = await chai.request(app)
     .get('/login/role')
@@ -114,7 +114,7 @@ describe('Users Test', () => {
     expect(res.body).to.deep.equal({ message: 'Token not found' })
   })
   it('deve retornar uma messagem de erro caso o token seja invalido', async () => {
-    sinon.stub(TokenGeneratorJwt, 'verify').resolves(null);
+    sinon.stub(jwt, 'verify').returns(null as any);
 
     const res = await chai.request(app)
     .get('/login/role')
