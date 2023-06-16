@@ -10,4 +10,9 @@ export default class MatcheService {
     const allMatches = await this.matcheModel.findAll();
     return { status: 'SUCCESSFUL', data: allMatches };
   }
+
+  public async getMatchesfiltered(term: boolean): Promise<ServiceResponse<IMatche[]>> {
+    const allMatchesFiltered = await this.matcheModel.filteredMatches(term);
+    return { status: 'SUCCESSFUL', data: allMatchesFiltered as unknown as IMatche[] };
+  }
 }

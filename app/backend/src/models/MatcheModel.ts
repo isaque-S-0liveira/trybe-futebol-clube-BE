@@ -15,9 +15,14 @@ export default class MatcheModel implements IMatcheModel {
     return allMatches as unknown as IMatche[];
   }
 
-  async findById(id: number): Promise<IMatche | null> {
-    const dbData = this.model.findByPk(id);
-    if (dbData == null) return null;
-    return dbData as unknown as IMatche;
+  async filteredMatches(term: boolean): Promise<IMatche[]> {
+    const finishedOrInProgress = await this.model.findAll({
+      where: { inProgress: term },
+      include: [
+        { model: TeamModel, as: 'awayTeam', attributes: ['teamName'] },
+        { model: TeamModel, as: 'homeTeam', attributes: ['teamName'] },
+      ],
+    });
+    return finishedOrInProgress as unknown as IMatche[];
   }
 }
