@@ -101,6 +101,8 @@ describe('Users Test', () => {
     expect(result).to.be.false;
   });
   
+
+  
   it('deve retornar uma messagem de erro caso o token não exista', async () => {
     sinon.stub(TokenGeneratorJwt, 'verify').resolves(null);
 
