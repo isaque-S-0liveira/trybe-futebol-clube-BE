@@ -1,10 +1,17 @@
 import { Request, Router, Response } from 'express';
 import MatchesController from '../controllers/MatcheController';
+import UserValidate from '../middlewares/userValidate';
 
 const matchesController = new MatchesController();
 
-const team = Router();
+const matche = Router();
 
-team.get('/', (req: Request, res: Response) => matchesController.getAllMatches(req, res));
+matche.get('/', (req: Request, res: Response) => matchesController.getAllMatches(req, res));
 
-export default team;
+matche.patch(
+  '/:id/finish',
+  UserValidate.validateJWT,
+  (req: Request, res: Response) =>
+    matchesController.finishedMatche(req, res),
+);
+export default matche;

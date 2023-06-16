@@ -25,4 +25,21 @@ export default class MatcheModel implements IMatcheModel {
     });
     return finishedOrInProgress as unknown as IMatche[];
   }
+
+  // async findById(id: number): Promise<IMatche | null> {
+  //   const matche = await this.model.findByPk(id);
+  //   if (!matche) return null;
+
+  //   return matche as unknown as IMatche;
+  // }
+
+  async update(id: number): Promise<number | null> {
+    const [affectedRows] = await this.model.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+    if (affectedRows === 0) return null;
+
+    return affectedRows;
+  }
 }
