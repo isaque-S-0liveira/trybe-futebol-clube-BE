@@ -20,4 +20,9 @@ matche.patch(
   (req: Request, res: Response) =>
     matchesController.updateMatcheInProgress(req, res),
 );
+matche.post(
+  '/',
+  UserValidate.validateJWT,
+  (req: Request, res: Response) => matchesController.createNewMatche(req, res),
+);
 export default matche;

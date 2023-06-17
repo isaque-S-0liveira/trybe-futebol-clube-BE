@@ -10,8 +10,8 @@ export default class MatchesController {
 
   public async getAllMatches(req: Request, res: Response) {
     const { inProgress } = req.query;
-    const serviceResponse = await this.matcheService.getAllMatches();
     if (!inProgress) {
+      const serviceResponse = await this.matcheService.getAllMatches();
       return res.status(200).json(serviceResponse.data);
     }
     if (inProgress === 'true') {
@@ -45,5 +45,11 @@ export default class MatchesController {
     }
 
     return res.status(200).json(serviceResponse.data);
+  }
+
+  public async createNewMatche(req: Request, res: Response): Promise<Response> {
+    const data = req.body;
+    const newMatch = await this.matcheService.createMatche(data);
+    return res.status(201).json(newMatch.data);
   }
 }

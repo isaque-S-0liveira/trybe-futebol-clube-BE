@@ -1,6 +1,6 @@
 import MatcheModel from '../models/MatcheModel';
 import { ServiceMessage, ServiceResponse } from '../Interfaces/ServiceResponse';
-import IMatche from '../Interfaces/IMatche';
+import IMatche, { newMatche, newMatcheReturn } from '../Interfaces/IMatche';
 import { IMatcheModel } from '../Interfaces/IMatcheModel';
 
 export default class MatcheService {
@@ -37,5 +37,10 @@ export default class MatcheService {
     }
     await this.matcheModel.update(id, matche);
     return { status: 'SUCCESSFUL', data: matcheFound };
+  }
+
+  public async createMatche(data: Omit<newMatche, 'id'>):Promise<ServiceResponse<newMatcheReturn>> {
+    const newMatchee = await this.matcheModel.create(data);
+    return { status: 'SUCCESSFUL', data: newMatchee as newMatcheReturn };
   }
 }

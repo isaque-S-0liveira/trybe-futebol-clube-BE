@@ -12,3 +12,15 @@ export default interface IMatche {
     teamName: string;
   }
 }
+
+export type newMatche = {
+  id: number;
+  homeTeamId: number;
+  homeTeamGoals: number;
+  awayTeamId: number;
+  awayTeamGoals: number;
+};
+
+export interface newMatcheReturn extends newMatche{
+  inProgress: boolean,
+}

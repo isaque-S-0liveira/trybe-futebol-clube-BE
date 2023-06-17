@@ -1,6 +1,6 @@
 import { IMatcheModel } from '../Interfaces/IMatcheModel';
 import SequelizeMatche from '../database/models/MatcheModel';
-import IMatche from '../Interfaces/IMatche';
+import IMatche, { newMatche, newMatcheReturn } from '../Interfaces/IMatche';
 import TeamModel from '../database/models/TeamsModel';
 
 export default class MatcheModel implements IMatcheModel {
@@ -48,5 +48,9 @@ export default class MatcheModel implements IMatcheModel {
     if (affectedRows === 0) return null;
 
     return this.findById(id);
+  }
+
+  async create(data: Omit<newMatche, 'id'>): Promise<newMatcheReturn> {
+    return this.model.create({ ...data, inProgress: true });
   }
 }
