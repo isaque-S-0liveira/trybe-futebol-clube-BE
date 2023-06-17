@@ -1,3 +1,4 @@
+import ITeam from '../Interfaces/ITeam';
 import { IMatcheModel } from '../Interfaces/IMatcheModel';
 import SequelizeMatche from '../database/models/MatcheModel';
 import IMatche, { newMatche, newMatcheReturn } from '../Interfaces/IMatche';
@@ -5,6 +6,7 @@ import TeamModel from '../database/models/TeamsModel';
 
 export default class MatcheModel implements IMatcheModel {
   private model = SequelizeMatche;
+  private teamModel = TeamModel;
   async findAll(): Promise<IMatche[]> {
     const allMatches = await this.model.findAll({
       include: [
@@ -31,6 +33,13 @@ export default class MatcheModel implements IMatcheModel {
     if (!matche) return null;
 
     return matche as unknown as IMatche;
+  }
+
+  async findIdTeam(id: number): Promise<ITeam | null> {
+    const team = await this.teamModel.findByPk(id);
+    if (!team) return null;
+
+    return team;
   }
 
   async endMatch(id: number): Promise<number | null> {

@@ -49,7 +49,10 @@ export default class MatchesController {
 
   public async createNewMatche(req: Request, res: Response): Promise<Response> {
     const data = req.body;
-    const newMatch = await this.matcheService.createMatche(data);
-    return res.status(201).json(newMatch.data);
+    const serviceResponse = await this.matcheService.createMatche(data);
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+      return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+    return res.status(201).json(serviceResponse.data);
   }
 }
