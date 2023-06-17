@@ -8,9 +8,10 @@ import { app } from '../app';
 import SequelizeMatche from '../database/models/MatcheModel';
 
 import { Response } from 'superagent';
-import { matches, matchesResult, newMatche } from './mocks/matches.mock';
+import { matches, matchesResult, newMatche, teamNotFound, teamsEquals } from './mocks/matches.mock';
 import { validToken } from './mocks/users.mock';
 import { verifyValid } from './mocks/users.mock';
+import SequelizeTeam from '../database/models/TeamsModel';
 
 chai.use(chaiHttp);
 
@@ -195,15 +196,26 @@ it('não deve ser possivel cadastrar uma nova partida caso o token seja invalido
   expect(res.body).to.deep.equal({ message: 'Token must be a valid token' })
 });
 
-it('não deve ser possivel cadastrar uma nova partida com times iguais nem com um time que não existe na tabela de times', async () => {
+it('não deve ser possivel cadastrar uma nova partida com times iguais', async () => {
+  sinon.stub(jwt, 'verify').returns(verifyValid as any);
 
-            //     sinon.stub(SequelizeTeam, 'findByPk').resolves(null);
-              
-            //     const {status, body} = await chai.request(app).get('/teams/99');
-              
-            //     expect(status).to.equal(404);
-            //     expect(body).to.deep.equal({ message: 'Team not found' });
-        });
+  const { status, body } = await chai.request(app).post('/matches')
+    .set('authorization', validToken)
+    .send(teamsEquals);
+    expect(status).to.equal(422);
+    expect(body.message).to.equal('It is not possible to create a match with two equal teams');
+});
+it('não deve ser possivel cadastrar uma partida com um time que não existe na tabela de times', async () => {
+  sinon.stub(SequelizeTeam, 'findByPk').resolves(null);
+  sinon.stub(jwt, 'verify').returns(verifyValid as any);
+
+  const { status, body } = await chai.request(app).post('/matches')
+    .set('authorization', validToken)
+    .send(teamNotFound);
+
+    expect(status).to.equal(404);
+    expect(body.message).to.equal('There is no team with such id!');
+});
 
   afterEach(sinon.restore);
 });

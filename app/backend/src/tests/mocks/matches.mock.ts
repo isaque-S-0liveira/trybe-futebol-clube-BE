@@ -23,6 +23,19 @@ const newMatche = {
   homeTeamGoals: 2,
   awayTeamGoals: 2,
 }
+const teamNotFound = {
+  homeTeamId: 99,
+  awayTeamId: 98, 
+  homeTeamGoals: 2,
+  awayTeamGoals: 2,
+}
+
+const teamsEquals = {
+  homeTeamId: 1,
+  awayTeamId: 1, 
+  homeTeamGoals: 2,
+  awayTeamGoals: 2,
+}
 
 const matchesResult = [
     {
@@ -59,4 +72,6 @@ export {
     matches,
     matchesResult,
     newMatche,
+    teamNotFound,
+    teamsEquals
 };
