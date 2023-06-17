@@ -17,6 +17,13 @@ const matches =  [
     }
 ];
 
+const newMatche = {
+  homeTeamId: 16,
+  awayTeamId: 8, 
+  homeTeamGoals: 2,
+  awayTeamGoals: 2,
+}
+
 const matchesResult = [
     {
       "id": 1,
@@ -51,4 +58,5 @@ const matchesResult = [
 export {
     matches,
     matchesResult,
+    newMatche,
 };

@@ -8,7 +8,7 @@ import { app } from '../app';
 import SequelizeMatche from '../database/models/MatcheModel';
 
 import { Response } from 'superagent';
-import { matches, matchesResult } from './mocks/matches.mock';
+import { matches, matchesResult, newMatche } from './mocks/matches.mock';
 import { validToken } from './mocks/users.mock';
 import { verifyValid } from './mocks/users.mock';
 
@@ -160,36 +160,42 @@ it('não deve ser possivel atualizar partidas em andamento quando o token não �
  });
 
 it('deve ser possivel cadastrar uma nova partida', async () => {
+  sinon.stub(SequelizeMatche, 'create').resolves(matches[1] as any);
+  sinon.stub(jwt, 'verify').returns(verifyValid as any);
 
-            //     sinon.stub(SequelizeTeam, 'findByPk').resolves(null);
-              
-            //     const {status, body} = await chai.request(app).get('/teams/99');
-              
-            //     expect(status).to.equal(404);
-            //     expect(body).to.deep.equal({ message: 'Team not found' });
+  const {...sendData } = newMatche;
+
+const { status, body } = await chai.request(app).post('/matches')
+    .set('authorization', validToken)
+    .send(sendData);
+
+  expect(status).to.equal(201);
+  expect(body).to.deep.equal(matches[1]);
 });
 
-      it('não deve ser possivel cadastrar uma nova partida caso  não exista um token', async () => {
+it('não deve ser possivel cadastrar uma nova partida caso  não exista um token', async () => {
+  sinon.stub(jwt, 'verify').returns(null as any);
 
-        //     sinon.stub(SequelizeTeam, 'findByPk').resolves(null);
-          
-        //     const {status, body} = await chai.request(app).get('/teams/99');
-          
-        //     expect(status).to.equal(404);
-        //     expect(body).to.deep.equal({ message: 'Team not found' });
-        });
+  const res = await chai.request(app)
+  .post('/matches')
+  .set('authorization', '')
 
-        it('não deve ser possivel cadastrar uma nova partida caso o token seja invalido', async () => {
+  expect(res).to.have.status(401)
+  expect(res.body).to.deep.equal({ message: 'Token not found' })
+});
 
-            //     sinon.stub(SequelizeTeam, 'findByPk').resolves(null);
-              
-            //     const {status, body} = await chai.request(app).get('/teams/99');
-              
-            //     expect(status).to.equal(404);
-            //     expect(body).to.deep.equal({ message: 'Team not found' });
-        });
+it('não deve ser possivel cadastrar uma nova partida caso o token seja invalido', async () => {
+  sinon.stub(jwt, 'verify').returns(null as any);
 
-        it('não deve ser possivel cadastrar uma nova partida com times iguais nem com um time que não existe na tabela de times', async () => {
+  const res = await chai.request(app)
+  .post('/matches')
+  .set('authorization', 'token_invalido')
+
+  expect(res).to.have.status(401)
+  expect(res.body).to.deep.equal({ message: 'Token must be a valid token' })
+});
+
+it('não deve ser possivel cadastrar uma nova partida com times iguais nem com um time que não existe na tabela de times', async () => {
 
             //     sinon.stub(SequelizeTeam, 'findByPk').resolves(null);
               
