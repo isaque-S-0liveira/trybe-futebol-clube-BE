@@ -1,7 +1,7 @@
 import SequelizeMatche from '../database/models/MatcheModel';
 import TeamModel from '../database/models/TeamsModel';
 import funcs from '../helpers/LeaderboardsCalculate';
-import { TTeamsAndMatches, TMatch, TLeaderboard } from '../Interfaces/ILeaderboard';
+import { TTeamsAndMatches, TMatch } from '../Interfaces/ILeaderboard';
 
 export default class LeaderboardModel {
   private matcheModel = SequelizeMatche;
