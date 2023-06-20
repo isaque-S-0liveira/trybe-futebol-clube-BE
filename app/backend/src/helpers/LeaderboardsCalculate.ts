@@ -27,8 +27,7 @@ const generateResults = (matches: TMatchesGoals[]): TMatchResults => {
 
     if (gols > golsSofridos) matchResult.victories += 1;
     if (gols < golsSofridos) matchResult.losses += 1;
-
-    matchResult.draws += 1;
+    if (gols === golsSofridos) matchResult.draws += 1;
   });
 
   return matchResult;
@@ -39,7 +38,8 @@ const resultExpected = (matches: TTeamsAndMatches[]): TLeaderboard[] => matches.
   const result = generateResults(organized);
   const totalPoints = result.victories * 3 + result.draws;
   const SaldoDeGols = result.goalsFavor - result.goalsOwn;
-  const efficiency = ((totalPoints / (organize.length * 3)) * 100).toFixed(2);
+  const efficiency = ((totalPoints / (el.homeMatches.length * 3)) * 100);
+  console.log(matches);
 
   return {
     name: el.teamName,
@@ -51,7 +51,7 @@ const resultExpected = (matches: TTeamsAndMatches[]): TLeaderboard[] => matches.
     goalsFavor: result.goalsFavor,
     goalsOwn: result.goalsOwn,
     goalsBalance: SaldoDeGols,
-    efficiency: Number(efficiency),
+    efficiency: efficiency.toFixed(2),
   };
 });
 
