@@ -17,8 +17,9 @@ O TFC é um site informativo sobre partidas e classificações de futebol!
 
 ## EndPoints
 <details>
-  <summary>Teams GET</summary>
-    - /teams com resposta com um `json` contendo o retorno no seguinte modelo:
+  <summary>Teams</summary>
+  
+  - /teams rota do tipo `GET` com resposta com um `json` contendo o retorno no seguinte modelo:
   
 ```json
 [
@@ -38,7 +39,7 @@ O TFC é um site informativo sobre partidas e classificações de futebol!
 ]
 ```
   
-- /teams/:id retorna um time específico no seguinte formato:
+- /teams/:id rota do tipo `GET` que retorna um time específico no seguinte formato:
   
 ```json
 {
@@ -200,7 +201,106 @@ O TFC é um site informativo sobre partidas e classificações de futebol!
 
 
 <details>
-  <summary></summary>
+  <summary>Leaderboards (Placares)</summary>
+  <details>
+    <summary>/leaderboards</summary>
+     ▶️ A classificação dos times, segue as seguintes regras de negócios:
+
+    - `Classificação`: Posição na classificação;
+    - `Time`: Nome do time;
+    - `P`: Total de Pontos;
+    - `J`: Total de Jogos;
+    - `V`: Total de Vitórias;
+    - `E`: Total de Empates;
+    - `D`: Total de Derrotas;
+    - `GP`: Gols marcados a favor;
+    - `GC`: Gols sofridos;
+    - `SG`: Saldo total de gols;
+    - `%`: Aproveitamento do time.
+
+    <br/>
+
+  - Para calcular o `Total de Pontos`, foi levado em consideração que:
+
+    - O time `vitorioso`: marcará +3 pontos;
+    - O time `perdedor`: marcará 0 pontos;
+    - Em caso de `empate`: ambos os times marcam +1 ponto.
+
+  - Para o campo `Aproveitamento do time (%)`, que é a porcentagem de jogos ganhos, use a seguinte fórmula: `[P / (J * 3)] * 100`, onde:
+
+    - `P`: Total de Pontos;
+    - `J`: Total de Jogos.
+
+    Obs.: O seu resultado deverá ser limitado a `duas casas decimais`.
+
+  - Para calcular `Saldo de Gols` use a seguinte fórmula: `GP - GC`, onde:
+
+    - `GP`: Gols marcados a favor;
+    - `GC`: Gols sofridos.
+
+  - O resultado deverá ser ordenado sempre de forma decrescente, levando em consideração a quantidade de pontos que o time acumulou. Em caso de empate no `Total de Pontos`, você deve levar em consideração os seguintes critérios para desempate:
+
+  **Ordem para desempate**
+
+  - 1º Total de Vitórias;
+  - 2º Saldo de gols;
+  - 3º Gols a favor;
+
+**Exemplo de retorno:**
+
+```json
+[
+  {
+    "name": "Palmeiras",
+    "totalPoints": 13,
+    "totalGames": 5,
+    "totalVictories": 4,
+    "totalDraws": 1,
+    "totalLosses": 0,
+    "goalsFavor": 17,
+    "goalsOwn": 5,
+    "goalsBalance": 12,
+    "efficiency": 86.67
+  },
+  {
+    "name": "Corinthians",
+    "totalPoints": 12,
+    "totalGames": 5,
+    "totalVictories": 4,
+    "totalDraws": 0,
+    "totalLosses": 1,
+    "goalsFavor": 12,
+    "goalsOwn": 3,
+    "goalsBalance": 9,
+    "efficiency": 80
+  },
+  {
+    "name": "Santos",
+    "totalPoints": 11,
+    "totalGames": 5,
+    "totalVictories": 3,
+    "totalDraws": 2,
+    "totalLosses": 0,
+    "goalsFavor": 12,
+    "goalsOwn": 6,
+    "goalsBalance": 6,
+    "efficiency": 73.33
+  },
+  ...
+]
+```
+  </details>
+  <details>
+  <summary>/leaderboard/home</summary>
+    
+  - Retorna informações de desempenho dos times da casa
+  </details>
+
+   <details>
+  <summary>/leaderboard/away</summary>
+    
+  - Retorna informações de desempenho dos times visitantes
+  </details>
 </details>
 
 ## Entre em contato:
