@@ -1,16 +1,20 @@
 # Trybe Futebol Clube
-
+    
+## Contexto
+O TFC é um site informativo sobre partidas e classificações de futebol!  
 <details>
   <summary>Preview</summary>
   <div style="display:flex; justify-content:center;  align-items:center; width="100%">
   <img src="Preview/front-example.png" alt="page3" width="100%" height="500"/>
   </div>
 </details>
-    
-## Contexto
-O TFC é um site informativo sobre partidas e classificações de futebol!
 
  O projeto é um site informativo sobre um campeonato de futebol que contém classificações e tabelas de jogos. O front-end fornece as informações que são enviadas ao back-end por meio de uma API e posteriormente armazenadas no banco de dados. Fui responsável pelo desenvolvimento de todo o back-end e banco de dados, enquanto o front-end foi desenvolvido pela equipe Trybe.
+
+ <details>
+  <summary>O que é a Trybe?🤔</summary>
+  A Trybe é uma escola de desenvolvimento web genuinamente comprometida com o sucesso profissional de seus estudantes. Com o Modelo de Sucesso Compartilhado (MSC) oferecido pela Trybe Fintech, uma instituição financeira autorizada pelo Banco Central do Brasil, os alunos têm a opção de pagar apenas quando estiverem trabalhando.
+</details>
 
 ## Diagrama de entidade e relacionamento
 <details>
