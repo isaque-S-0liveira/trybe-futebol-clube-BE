@@ -13,7 +13,11 @@ O TFC é um site informativo sobre partidas e classificações de futebol!
  O projeto é um site informativo sobre um campeonato de futebol que contém classificações e tabelas de jogos. O front-end fornece as informações que são enviadas ao back-end por meio de uma API e posteriormente armazenadas no banco de dados. Fui responsável pelo desenvolvimento de todo o back-end e banco de dados, enquanto o front-end foi desenvolvido pela equipe Trybe.
 
 ## Diagrama de entidade e relacionamento
-<img src="Preview/diagrama-er-TFC.png" alt="page3" width="100%" height="500"/>
+<details>
+  <summary>Ver diagrama</summary>
+
+  <img src="Preview/diagrama-er-TFC.png" alt="page3" width="100%" height="500"/>
+</details>
 
 ## EndPoints
 <details>
@@ -302,6 +306,25 @@ O TFC é um site informativo sobre partidas e classificações de futebol!
   - Retorna informações de desempenho dos times visitantes
   </details>
 </details>
+
+## Habilidades demonstradas:
+
+- Docker: Utilizando Containers.
+- Node.js: ORM e Autenticação.
+- Programação Orientada a Objetos (POO) e SOLID.
+
+## Tecnologias utilizadas:
+
+- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/pt-br/) - É um framework de desenvolvimento web leve que oferece recursos robustos e permite uma implantação rápida. É uma boa opção para criar back-ends escalonáveis, fáceis de manter e de alto desempenho.
+- [ORM Sequelize](https://sequelize.org/) - O Sequelize é um Object-Relational Mapping (ORM) para Node.js que permite a criação de modelos em JavaScript ou TypeScript para representar as tabelas de um banco de dados.
+- [MySql](https://www.mysql.com/) - O MySQL é um sistema de gerenciamento de banco de dados relacional (SGBD) de código aberto e gratuito, que é usado para armazenar, organizar e recuperar dados.
+- [bcryptjs](https://dev.to/mr_walkr/password-hashing-in-nodejs-using-bcryptjs-library-3j56) - Bcrypt é uma biblioteca de criptografia de senhas que foi projetada para ser usada com o Node. js, uma plataforma de desenvolvimento de aplicativos em JavaScript. Ele fornece uma maneira fácil de armazenar senhas de forma segura, usando um algoritmo de hash forte e uma técnica chamada “salting”.
+- [JWT](https://jwt.io/introduction) - O JWT (JSON Web Token) é uma forma de autenticação que permite que um servidor verifique a identidade de um usuário sem precisar armazenar informações sobre ele.
+- [joi](https://joi.dev/api/?v=17.13.3) - Validações em APIs
+- [Chai](https://www.chaijs.com/api/bdd/) - O chai é uma biblioteca de asserção que auxilia o desenvolvimento de testes com Node.js e que pode ser combinada com qualquer framework de testes JavaScript.
+- [Mocha](https://mochajs.org/) - O mocha é um framework de testes para JavaScript, isso significa que ele nos ajuda a arquitetar os nossos testes fornecendo a estrutura e interface para escrevermos e executarmos eles.
+- [sinon](https://sinonjs.org/) - O Sinon é uma ferramenta que auxilia na criação e utilização dos dublês, fornecendo funções para diversos tipos de Test Doubles.
 
 ## Entre em contato:
 <a href="mailto:zazac3179@gmail.com" target="_blank">
