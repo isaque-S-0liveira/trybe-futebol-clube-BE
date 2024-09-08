@@ -5,7 +5,7 @@ O TFC é um site informativo sobre partidas e classificações de futebol!
 <details>
   <summary>Preview</summary>
   <div style="display:flex; justify-content:center;  align-items:center; width="100%">
-  <img src="Preview/front-example.png" alt="page3" width="100%" height="500"/>
+  <img src="Preview/front-example.png" alt="page3"/>
   </div>
 </details>
 
@@ -20,7 +20,7 @@ O TFC é um site informativo sobre partidas e classificações de futebol!
 <details>
   <summary>Ver diagrama</summary>
 
-  <img src="Preview/diagrama-er-TFC.png" alt="page3" width="100%" height="500"/>
+  <img src="Preview/diagrama-er-TFC.png" alt="page3"/>
 </details>
 
 ## EndPoints
