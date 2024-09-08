@@ -319,7 +319,8 @@ O TFC é um site informativo sobre partidas e classificações de futebol!
 
 ## Tecnologias utilizadas:
 
-- [TypeScript](https://www.typescriptlang.org/)
+- [Node.js](https://nodejs.org/) - Plataforma para executar código JavaScript no lado do servidor.
+- [TypeScript](https://www.typescriptlang.org/) - Superset do JavaScript que adiciona tipagem estática, aumentando a segurança e robustez do código.
 - [Express](https://expressjs.com/pt-br/) - É um framework de desenvolvimento web leve que oferece recursos robustos e permite uma implantação rápida. É uma boa opção para criar back-ends escalonáveis, fáceis de manter e de alto desempenho.
 - [ORM Sequelize](https://sequelize.org/) - O Sequelize é um Object-Relational Mapping (ORM) para Node.js que permite a criação de modelos em JavaScript ou TypeScript para representar as tabelas de um banco de dados.
 - [MySql](https://www.mysql.com/) - O MySQL é um sistema de gerenciamento de banco de dados relacional (SGBD) de código aberto e gratuito, que é usado para armazenar, organizar e recuperar dados.
